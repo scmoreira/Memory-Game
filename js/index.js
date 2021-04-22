@@ -42,30 +42,22 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      //console.log(`Card clicked: ${card}`)
-
 
       // Add class to the card when clicked
       card.classList.toggle('turned')
       
       // Add the card in the array of picked cards
       memoryGame.pickedCards.push(card)
-      //console.log(memoryGame.pickedCards)
 
       // When click on two cards
       if (memoryGame.pickedCards.length === 2) {
 
-       //Update pairs clicked --> ARREGLAR PORQUE NO CUENTA EL PRIMER PAR
-       document.querySelector("#pairs-clicked").innerText = memoryGame.pairsClicked
-
         const firstCardClicked = memoryGame.pickedCards[0].getAttribute('data-card-name')
-        const secondCardClicked = memoryGame.pickedCards[1].getAttribute('data-card-name')
-        
+        const secondCardClicked = memoryGame.pickedCards[1].getAttribute('data-card-name') 
         
         if (memoryGame.checkIfPair(firstCardClicked, secondCardClicked)) {
           
           // Update pairs guessed
-         
           document.querySelector('#pairs-guessed').innerText = memoryGame.pairsGuessed
           
           // Empty the array to compare the next two clicked cards
@@ -73,26 +65,15 @@ window.addEventListener('load', event => {
         
         } else {
 
-          // Remove the class to flip the cards again
-
-          // setTimeout(function() {
-          //   memoryGame.pickedCards.forEach(function(element) {
-          //     element.classList.toggle('turned')
-              
-          //     memoryGame.pickedCards = []
-          //   })
-          // }, 600)
-          
-
           setTimeout(() => {
             memoryGame.pickedCards.forEach(element => element.classList.toggle('turned'))
-            
-            // Empty the array
-            
             memoryGame.pickedCards = []
           }, 600)
-          //console.log(memoryGame.pickedCards)
+
         }
+
+        //Update pairs clicked
+        document.querySelector("#pairs-clicked").innerText = memoryGame.pairsClicked
         
         // Alert finish
         if (memoryGame.isFinished()) {
@@ -100,9 +81,5 @@ window.addEventListener('load', event => {
         }
       }  
     })  
-    
   })
-    
-  
-    
 })
