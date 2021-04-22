@@ -6,37 +6,27 @@ class MemoryGame {
     this.pairsGuessed = 0
   }
 
-  // shuffleCards() {
-  //   if (!this.cards) {
-  //     return undefined      //Jasmine dice que no funciona
-  //   }
-  //   return this.cards.sort(() => Math.random() - 0.5)
-  // }
-
-  // Pruebo otro método encontrado en Google
   shuffleCards(cards) {
     for(let i = this.cards.length - 1; i > 0; i--){
-      const j = Math.floor(Math.random() * i)
+      const index = Math.floor(Math.random() * i)
       const temp = this.cards[i]
-      this.cards[i] = this.cards[j]
-      this.cards[j] = temp
+      this.cards[i] = this.cards[index]
+      this.cards[index] = temp
     }
     return cards
   }
 
   checkIfPair(card1, card2) {
     this.pairsClicked += 1
-    
     if (card1 === card2) {
-      this.pairsGuessed +=1
-      //console.log(`Pairs clicked: ${this.pairsClicked}, pairs guessed: ${this.pairsGuessed}`);
+      this.pairsGuessed += 1
       return true
-    } 
+    }
     return false
   }
 
   isFinished() {
-    if (this.pairsGuessed === this.cards.length/2) {
+    if (this.pairsGuessed === this.cards.length / 2) {
       return true
     } 
     return false
